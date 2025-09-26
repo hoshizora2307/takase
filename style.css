@@ -1,0 +1,212 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f2027, #375368, #2c5364); /* 深い青のグラデーションをベースに */
+    font-family: 'Shippori Mincho B1', serif;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#app-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+/* 後光のエフェクト - 常務への感謝の念を光で表現 */
+#halo-effect {
+    position: absolute;
+    width: 450px; /* サイズを大きく */
+    height: 450px;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.9) 0%, rgba(255, 193, 7, 0) 70%); /* 感謝を表す琥珀色/金色 */
+    border-radius: 50%;
+    animation: pulse-halo 4s infinite alternate, rotate-halo 25s linear infinite;
+    z-index: 0;
+    filter: blur(10px); /* ぼかしを強く */
+}
+
+@keyframes pulse-halo {
+    from { transform: scale(0.7); opacity: 0.8; }
+    to { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes rotate-halo {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 前景のキラキラ (感謝の星、ハート) */
+#sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* 背景のキラキラ (より派手に) */
+#bg-sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.bg-particle-sparkle {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.15); /* 明るめの白でキラキラ感をアップ */
+    font-size: 1.5em;
+    animation: float-sparkle-bg var(--duration) linear infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes float-sparkle-bg {
+    0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+    20% { opacity: 0.4; } /* 背景の輝きを強める */
+    100% { transform: translateY(-150vh) rotate(720deg) scale(1.5); opacity: 0; }
+}
+
+
+#message-area {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 70px rgba(255, 193, 7, 1); /* 強力な金色の光 */
+    box-sizing: border-box;
+    max-width: 95%;
+    border: 5px solid #ffc107; /* 太い金色の枠 */
+}
+
+.main-message {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.8em; /* さらに大きく */
+    font-weight: 700;
+    letter-spacing: 7px; /* 隙間を広げる */
+    margin-bottom: 30px;
+    color: #ffc107; /* 鮮やかな金色 */
+    text-shadow: 0 0 25px #ffc107, 0 0 50px #ff9800; /* 強く光る */
+    animation: fade-in 2s ease-out, glow-text 1s infinite alternate; /* 光る速度をさらに速める */
+    line-height: 1.2;
+}
+
+@keyframes glow-text {
+    from { text-shadow: 0 0 15px #ffc107, 0 0 30px #ff9800; }
+    to { text-shadow: 0 0 30px #ffc107, 0 0 60px #ff9800; }
+}
+
+.sub-message {
+    font-size: 2.0em; /* さらに大きく */
+    line-height: 1.5;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fade-in-up 1.5s ease-out 2s forwards;
+    color: #ffeb3b; /* 明るい黄色 */
+}
+
+#thanks-button {
+    margin-top: 40px;
+    padding: 22px 45px; /* ボタンを大きく */
+    font-size: 1.8em; /* ボタンの文字サイズを大きく */
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff80ab, #ff4081); /* 感謝を表すピンクのグラデーション */
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 35px rgba(255, 64, 129, 1); /* 派手なピンクのシャドウ */
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: bounce 2s infinite, pulse-button 1s infinite alternate;
+}
+
+#thanks-button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 40px rgba(255, 64, 129, 1.2);
+}
+
+@keyframes pulse-button {
+    from { box-shadow: 5px 5px 25px rgba(255, 64, 129, 0.8); }
+    to { box-shadow: 10px 10px 30px rgba(255, 64, 129, 1); }
+}
+
+.creator-note {
+    font-size: 1.1em;
+    color: #a3b9d0;
+    margin-top: 30px;
+    letter-spacing: 2px;
+}
+
+/* 前景の感謝スパークル (ハートと星) */
+.particle-thanks {
+    position: absolute;
+    animation: float-sparkle var(--duration) ease-in forwards;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+/* ハートエフェクト (感謝の表現) */
+.particle-heart {
+    color: #ff4081; /* 感謝のピンク */
+    font-size: 2.5em;
+    animation-name: float-sparkle-heart;
+}
+
+/* 星エフェクト */
+.particle-star {
+    color: #ffd700;
+    font-size: 2em;
+    animation-name: float-sparkle;
+}
+
+@keyframes float-sparkle {
+    0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; transform: scale(1) rotate(20deg); }
+    100% { transform: translateY(-120vh) scale(1.8) rotate(360deg); opacity: 0; }
+}
+@keyframes float-sparkle-heart {
+    0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; transform: scale(1) rotate(-20deg); }
+    100% { transform: translateY(-120vh) scale(1.8) rotate(360deg); opacity: 0; }
+}
+
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    #message-area { padding: 30px 20px; }
+    .main-message { font-size: 3em; letter-spacing: 3px; }
+    .sub-message { font-size: 1.5em; }
+    #thanks-button { padding: 15px 30px; font-size: 1.2em; margin-top: 30px; }
+    .creator-note { font-size: 0.9em; }
+    #halo-effect { width: 350px; height: 350px; }
+}
+
+@media (max-width: 480px) {
+    .main-message { font-size: 2em; }
+    .sub-message { font-size: 1em; }
+    #thanks-button { padding: 12px 25px; font-size: 1em; }
+    #halo-effect { width: 250px; height: 250px; }
+}
