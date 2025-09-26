@@ -189,37 +189,34 @@ body, html {
 @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-20px); } 60% { transform: translateY(-10px); } }
 
-
 /* takase02.pngを縦横無尽に動かすスタイル */
 #flying-takase {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 150px;
     height: 150px;
     background-image: url('takase02.png');
     background-size: contain;
     background-repeat: no-repeat;
-    animation: takase-fly 20s linear infinite; /* アニメーションの速度と繰り返し */
+    animation: takase-fly 20s linear infinite;
     z-index: 100;
 }
 
+/* 縦横無尽に動き、サイズと点滅を不規則に変化させるアニメーション */
 @keyframes takase-fly {
-    0% { top: 0vh; left: 0vw; transform: scale(0.8) rotate(0deg); }
-    10% { top: 20vh; left: 15vw; transform: scale(1.2) rotate(45deg); }
-    20% { top: 5vh; left: 40vw; transform: scale(1.0) rotate(90deg); }
-    30% { top: 30vh; left: 60vw; transform: scale(1.5) rotate(135deg); }
-    40% { top: 10vh; left: 85vw; transform: scale(0.9) rotate(180deg); }
-    50% { top: 50vh; left: 50vw; transform: scale(1.3) rotate(225deg); }
-    60% { top: 20vh; left: 20vw; transform: scale(0.7) rotate(270deg); }
-    70% { top: 70vh; left: 45vw; transform: scale(1.1) rotate(315deg); }
-    80% { top: 40vh; left: 80vw; transform: scale(1.4) rotate(360deg); }
-    90% { top: 80vh; left: 10vw; transform: scale(0.9) rotate(405deg); }
-    100% { top: 0vh; left: 0vw; transform: scale(0.8) rotate(450deg); }
-}
-
-/* 点滅アニメーション */
-@keyframes blink {
-    0%, 20%, 50%, 80%, 100% { opacity: 1; }
-    40%, 60% { opacity: 0.2; }
+    0% { transform: translate(0vw, 0vh) scale(0.8) rotate(0deg) opacity(1); }
+    10% { transform: translate(20vw, 15vh) scale(1.2) rotate(45deg) opacity(0.9); }
+    20% { transform: translate(40vw, -10vh) scale(1.0) rotate(90deg) opacity(0.2); } /* ここで点滅 */
+    30% { transform: translate(60vw, 25vh) scale(1.5) rotate(135deg) opacity(1); }
+    40% { transform: translate(80vw, -20vh) scale(0.9) rotate(180deg) opacity(0.5); } /* ここで点滅 */
+    50% { transform: translate(100vw, 30vh) scale(1.1) rotate(60deg) opacity(1); }
+    50.1% { transform: translate(-50vw, 50vh) scale(0.5) rotate(-90deg) opacity(1); } /* 画面左外から再登場 */
+    60% { transform: translate(0vw, 40vh) scale(1) rotate(-30deg) opacity(0.8); }
+    70% { transform: translate(20vw, 60vh) scale(1.3) rotate(40deg) opacity(1); }
+    80% { transform: translate(50vw, 35vh) scale(0.7) rotate(-50deg) opacity(0.7); }
+    90% { transform: translate(70vw, 70vh) scale(1.2) rotate(30deg) opacity(1); }
+    100% { transform: translate(100vw, 0vh) scale(1) rotate(0deg) opacity(1); }
 }
 
 /* スマホ対応 */
@@ -231,7 +228,7 @@ body, html {
     .creator-note { font-size: 0.9em; }
     #halo-effect { width: 350px; height: 350px; }
     #flying-takase { width: 100px; height: 100px; }
-    @keyframes takase-fly {
+    @keyframes takase-fly { /* スマホ向けアニメーションの調整 */
         0% { transform: translate(0vw, 0vh) scale(0.7) rotate(0deg); }
         25% { transform: translate(50vw, 30vh) scale(1.1) rotate(90deg); }
         50% { transform: translate(80vw, 0vh) scale(0.9) rotate(180deg); }
