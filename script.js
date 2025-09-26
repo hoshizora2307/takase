@@ -3,16 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
         "💖常務の的確なご指導に、心からの感謝を捧げます！💖",
         "🌟常務の存在は、私たちの希望の星です！🌟",
         "💡常務の決断力と知性は、常に我々を正しい道に導きます！💡",
-        "🙏常務のご尽力、決して忘れません！深い敬意を込めて！🙏",
-        "💐常務の温かいお心遣いに、感動しております！💐",
-        "🏆常務のおかげで、私たちは最高の成果を上げられます！🏆"
+        "🏆常務のご尽力、決して忘れません！深い敬意を込めて！🏆",
+        "🚀常務の熱意は、いつも私たちを鼓舞します！🚀",
+        "🙏常務、永遠に我々の精神的支柱です！🙏"
     ];
 
     const thanksButton = document.getElementById('thanks-button');
     const changeableMessage = document.getElementById('changeable-message');
-    const sparkleContainer = document.getElementById('sparkle-container'); // 前景スパークル
-    const bgSparkleContainer = document.getElementById('bg-sparkle-container'); // 背景スパークル
+    const sparkleContainer = document.getElementById('sparkle-container');
+    const bgSparkleContainer = document.getElementById('bg-sparkle-container');
     const haloEffect = document.getElementById('halo-effect');
+
+    // takase02.pngを動的に追加
+    const flyingTakase = document.createElement('div');
+    flyingTakase.id = 'flying-takase';
+    document.body.appendChild(flyingTakase);
 
     let messageIndex = 0;
 
@@ -24,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ボタンをクリックした時のイベント
     thanksButton.addEventListener('click', () => {
-        // メッセージを切り替える
         changeableMessage.innerHTML = thanksMessages[messageIndex];
         changeableMessage.style.animation = 'none';
         void changeableMessage.offsetWidth;
@@ -32,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         messageIndex = (messageIndex + 1) % thanksMessages.length;
 
-        // 大量の前景パーティクルを生成
         for (let i = 0; i < 80; i++) {
             createParticle('heart');
             createParticle('star');
@@ -45,12 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         createParticle('heart');
         createParticle('star');
         createParticle('sparkle');
-    }, 120); // 頻度を上げて動的に
+    }, 120);
 
     // 常に背景スパークルを生成
     setInterval(() => {
         createBackgroundSparkle();
-    }, 80); // 頻度を上げて動的に
+    }, 80);
 
     // 画面読み込み時とリサイズ時に後光エフェクトの位置を調整
     window.addEventListener('load', updateHaloPosition);
@@ -66,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createBackgroundSparkle();
     }
 
-    function createParticle(type) { // 前景パーティクル生成
+    function createParticle(type) {
         const particle = document.createElement('div');
         particle.classList.add('particle-thanks');
         
@@ -90,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function createBackgroundSparkle() { // 背景スパークル生成
+    function createBackgroundSparkle() {
         const sparkle = document.createElement('div');
         sparkle.classList.add('bg-particle-sparkle');
         sparkle.textContent = '✧';
