@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "💡常務の決断力と知性は、常に我々を正しい道に導きます！💡",
         "🏆常務のご尽力、決して忘れません！深い敬意を込めて！🏆",
         "🚀常務の熱意は、いつも私たちを鼓舞します！🚀",
-        "🙏常務、永遠に私の精神的支柱です！🙏"
+        "🙏常務、永遠に我々の精神的支柱です！🙏"
     ];
 
     const thanksButton = document.getElementById('thanks-button');
@@ -14,33 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgSparkleContainer = document.getElementById('bg-sparkle-container');
     const haloEffect = document.getElementById('halo-effect');
 
-    // takase02.pngを動的に追加し、アニメーションクラスを付与
-    const flyingTakase = document.createElement('div');
-    flyingTakase.id = 'flying-takase';
-    document.body.appendChild(flyingTakase);
-
-    // 点滅をランダムに発生させる
-    setInterval(() => {
-        if (Math.random() < 0.5) { // 50%の確率で点滅
-            flyingTakase.style.animationName = 'takase-fly, blink';
-            flyingTakase.style.animationDuration = '30s, 1s';
-            flyingTakase.style.animationIterationCount = 'infinite, 2';
-        } else {
-            flyingTakase.style.animationName = 'takase-fly';
-            flyingTakase.style.animationDuration = '30s';
-            flyingTakase.style.animationIterationCount = 'infinite';
-        }
-    }, 5000); // 5秒ごとにチェック
-
     let messageIndex = 0;
 
-    // 後光エフェクトの位置を更新する関数 (画面中央に固定)
     function updateHaloPosition() {
         haloEffect.style.left = `calc(50% - ${haloEffect.offsetWidth / 2}px)`;
         haloEffect.style.top = `calc(50% - ${haloEffect.offsetHeight / 2}px)`;
     }
 
-    // ボタンをクリックした時のイベント
     thanksButton.addEventListener('click', () => {
         changeableMessage.innerHTML = thanksMessages[messageIndex];
         changeableMessage.style.animation = 'none';
@@ -56,23 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 常に前景パーティクルを生成
     setInterval(() => {
         createParticle('heart');
         createParticle('star');
         createParticle('sparkle');
     }, 120);
 
-    // 常に背景スパークルを生成
     setInterval(() => {
         createBackgroundSparkle();
     }, 80);
 
-    // 画面読み込み時とリサイズ時に後光エフェクトの位置を調整
     window.addEventListener('load', updateHaloPosition);
     window.addEventListener('resize', updateHaloPosition);
 
-    // 画面読み込み時に最初のエフェクトを大量に生成
     for (let i = 0; i < 200; i++) {
         createParticle('heart');
         createParticle('star');
